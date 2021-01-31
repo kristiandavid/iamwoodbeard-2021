@@ -11,6 +11,7 @@
 .headerGrid {
   display: grid;
   grid-template-columns: 1fr;
+  justify-items: center;
   @media (min-width: rem(500)) {
     grid-template-columns: rem(200) max-content;
   }
@@ -24,7 +25,7 @@
   padding: rem(20);
   align-self: center;
   img {
-    width: 80%;
+    width: 40%;
     display: block;
     margin: 0 auto;
     @media (min-width: rem(500)) {
