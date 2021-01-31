@@ -1,0 +1,11 @@
+// Functions/Mixins
+@function rem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+// Variables
+$stevie: rgb(19,19,19);
+$kronner: rgb(55,55,55);
+$ice: #ccc;
+$wings: rgb(229, 24, 55);
