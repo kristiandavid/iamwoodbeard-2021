@@ -1,0 +1,15 @@
+@import "../assets/scss/util";
+
+.pageContent {
+  display: grid;
+  grid-template-columns: rem(500) 1fr;
+  grid-template-areas: "nav content";
+}
+
+.intro {
+  grid-area: content;
+}
+
+.insta {
+  grid-column: 1/-1;
+}

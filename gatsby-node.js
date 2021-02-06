@@ -12,7 +12,7 @@ exports.createPages = async function ({ actions, graphql }) {
           }
         }
       }
-      pages: allContentfulPage {
+      notHome:allContentfulPage(filter: {slug: {ne: "home"}}) {
         edges {
           node {
             slug
@@ -30,7 +30,7 @@ exports.createPages = async function ({ actions, graphql }) {
     })
   });
 
-  data.pages.edges.forEach(edge => {
+  data.notHome.edges.forEach(edge => {
     const slug = edge.node.slug
     actions.createPage({
       path: slug,
