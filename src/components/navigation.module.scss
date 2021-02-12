@@ -1,11 +1,14 @@
 @import "../assets/scss/util";
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 99;
   border-top: 2px solid $wings;
+  @media (min-width: rem(500)) {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 }
 
 .headerGrid {
@@ -18,9 +21,13 @@
 }
 
 .logo {
-  background: rgba(19,19,19, 0.5);
+  background: rgba(19,19,19, 0.8);
   padding: rem(20);
   align-self: center;
+  border-bottom-right-radius: 0;
+  @media (min-width: rem(500)) {
+    border-bottom-right-radius: 40%;
+  }
   img {
     width: 40%;
     display: block;
@@ -32,7 +39,7 @@
 }
 
 .navigation {
-  background: rgba(19,19,19, 0.5);
+  background: rgba(19,19,19, 0.8);
   margin: 0;
   padding: 0 rem(20);
   display: grid;

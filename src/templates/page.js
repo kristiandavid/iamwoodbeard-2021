@@ -10,7 +10,7 @@ export default function BlogPost({ data }) {
     <Layout>
       <div className={styles.content}>
         <h1>{post.title}</h1>
-        <div>{post.content}</div>
+        <div>{post.content.raw}</div>
       </div>
     </Layout>
   )
@@ -20,7 +20,9 @@ export const query = graphql`
     contentfulPage(slug: { eq: $slug }) {
       title
       content {
-        raw
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }

@@ -2,9 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
-// import Hero from '../components/hero'
+import Img from "gatsby-image"
 import Layout from '../components/layout'
-// import ArticlePreview from '../components/article-preview'
 
 import styles from "./index.module.scss";
 
@@ -13,26 +12,25 @@ class RootIndex extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const ig = get(this, 'props.data.instagram.edges')
     const home = get(this, 'props.data.home.edges[0].node')
-
     return (
       <Layout location={this.props.location}>
         <div className={styles.pageContent}>
           <Helmet title={siteTitle} />
-          <div className={styles.intro}>
-            {home.title}
-            {home.seoDescription}
-            {home.content.raw}
-          </div>
+          <div className={styles.intro} dangerouslySetInnerHTML={{__html: home.content.childMarkdownRemark.html}} />
           <div className={styles.insta}>
-            <h2 className="section-headline">Recent articles</h2>
-            <div className="ig">
-              {ig.map(({ node }) => {
-                return (
-                  <div key={node.id}>
-                    <p>{node.caption}</p>
-                  </div>
-                )
-              })}
+            <div>
+              <a className={styles.instaGrid} href="https://www.instagram.com/iamwoodbeard" target="_blank" rel="noreferrer" aria-label="Go to Woodbeard's Instagram" >
+                {ig.map((obj, index) => {
+                  const imgsrc = obj.node.localImage ? [obj.node.localImage.childImageSharp.fluid] : [obj.node.media_url];
+                  return (
+                    <Img
+                      fluid={imgsrc}
+                      alt="Instagram Image"
+                      className={styles.instaImg}
+                      key={obj.node.id} />
+                  )
+                })}
+              </a>
             </div>
           </div>
         </div>
@@ -59,20 +57,27 @@ export const pageQuery = graphql`
   				title
           seoDescription
           content {
-            raw
+            childMarkdownRemark {
+              html
+            }
           }
         }
       }
     }
-    instagram: allInstagramContent(limit: 10) {
+    instagram: allInstagramContent(limit: 14, filter: {localImage: {id: {ne: null}}}) {
       edges {
         node {
-          caption
-          media_type
-          media_url
-          children {
-            id
+          id
+          localImage {
+            childImageSharp {
+              fluid(maxWidth: 600, maxHeight: 600, quality: 90) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
+            }
           }
+          permalink
+          caption
+          media_url
         }
       }
     }

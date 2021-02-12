@@ -1,5 +1,11 @@
 @import "../assets/scss/util";
 
 .bodyContent {
-  border: 1px solid red;
+  text-align: right;
+  @media (min-width: rem(500)) {
+    padding-top: rem(165);
+  }
+  @media (min-width: rem(700)) {
+    padding-top: rem(80);
+  }
 }

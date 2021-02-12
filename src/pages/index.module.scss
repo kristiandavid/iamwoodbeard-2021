@@ -1,15 +1,61 @@
 @import "../assets/scss/util";
 
 .pageContent {
-  display: grid;
-  grid-template-columns: rem(500) 1fr;
-  grid-template-areas: "nav content";
+  display: block;
+  @media (min-width: rem(500)) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "nav content"
+      "insta insta";
+    grid-gap: rem(20);
+  }
 }
 
 .intro {
   grid-area: content;
+  color: #ccc;
+  padding: 0 rem(20) rem(20);
+  text-align: right;
 }
 
 .insta {
-  grid-column: 1/-1;
+  grid-area: insta;
+}
+
+.instaGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  // grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-areas:
+    "engine engine img2 img3 img4"
+    "engine engine img5 img6 img7"
+    "img8 img9 img10 caboose caboose"
+    "img11 img12 img13 caboose caboose";
+  grid-gap: 0px;
+  @media (max-width: rem(600)) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "engine engine"
+      "engine engine"
+      "img2 img3"
+      "img4 img5"
+      "img6 img7"
+      "caboose caboose"
+      "caboose caboose"
+      "img8 img9"
+      "img10 img11"
+      "img12 img13"
+  }
+}
+
+.instaImg {
+  &:nth-of-type(1) {
+    grid-area: engine;
+  }
+  &:nth-of-type(12) {
+    grid-area: caboose;
+  }
 }
