@@ -1,6 +1,5 @@
 import React from 'react'
 import './base.scss'
-import Container from './container'
 import Navigation from './navigation'
 import Footer from './footer'
 
@@ -11,11 +10,11 @@ class Template extends React.Component {
     const { children } = this.props
 
     return (
-      <Container>
+      <div className={styles.container}>
         <Navigation />
         <div className={styles.bodyContent}>{children}</div>
         <Footer />
-      </Container>
+      </div>
     )
   }
 }

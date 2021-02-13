@@ -1,7 +1,21 @@
 @import "../assets/scss/util";
 
 .footer {
+  grid-row: 2/3;
   background: rgba(19,19,19, 0.8);
   padding: rem(20);
   color: $ice;
+
+  a {
+    padding:rem(5);
+  }
+}
+
+.social {
+  margin-top: rem(10);
+  display: grid;
+  grid-auto-flow: column;
+  // grid-template-columns: repeat(4, auto);
+  width: max-content;
+  grid-gap:rem(5);
 }

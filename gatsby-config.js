@@ -56,6 +56,31 @@ module.exports = {
       options: {
         access_token: process.env.INSTAGRAM_ACCESS_TOKEN
       }
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-PT2RSCG",
+        includeInDevelopment: true,
+      },
     }
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    //     trackingIds: [
+    //       "G-3C1X36FDL9"
+    //     ],
+    //   },
+    // }
+
   ],
 };

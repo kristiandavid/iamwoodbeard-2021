@@ -39,6 +39,9 @@ export default function Nav() {
                 <li className={styles.navigationItem}>
                   <Link to="/products/">Products</Link>
                 </li>
+                <li className={styles.navigationItem}>
+                  <Link to="/contact/">Contact</Link>
+                </li>
               </ul>
             </nav>
           </div>

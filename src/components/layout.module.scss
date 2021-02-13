@@ -1,11 +1,22 @@
 @import "../assets/scss/util";
 
+.container {
+  @media (min-width: rem(500)) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    grid-gap: 10px 0;
+    height: 100vh;
+  }
+}
+
 .bodyContent {
   text-align: right;
   @media (min-width: rem(500)) {
+    grid-row: 1/2;
     padding-top: rem(165);
   }
   @media (min-width: rem(700)) {
-    padding-top: rem(80);
+    padding-top: rem(95);
   }
 }

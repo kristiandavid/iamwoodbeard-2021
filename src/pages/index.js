@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
+import feather from 'feather-icons'
 import { Helmet } from 'react-helmet'
 import Img from "gatsby-image"
 import Layout from '../components/layout'
@@ -19,7 +20,10 @@ class RootIndex extends React.Component {
           <div className={styles.intro} dangerouslySetInnerHTML={{__html: home.content.childMarkdownRemark.html}} />
           <div className={styles.insta}>
             <div>
-              <a className={styles.instaGrid} href="https://www.instagram.com/iamwoodbeard" target="_blank" rel="noreferrer" aria-label="Go to Woodbeard's Instagram" >
+              <div className={styles.instaIntro}>
+                <span dangerouslySetInnerHTML={{__html: feather.icons['chevrons-down'].toSvg({'height': 15})}} /> Some Instagrams!
+              </div>
+              <a className={styles.instaGrid} href="https://www.instagram.com/iamwoodbeard" target="_blank" rel="noreferrer" aria-label="Go to Woodbeard's Instagram page" >
                 {ig.map((obj, index) => {
                   const imgsrc = obj.node.localImage ? [obj.node.localImage.childImageSharp.fluid] : [obj.node.media_url];
                   return (

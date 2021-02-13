@@ -1,3 +1,25 @@
+@import "../assets/scss/util";
+
 .content {
-  border: 1px solid red;
+  padding: rem(10);
+  text-align: center;
+  @media (min-width: rem(500)) {
+    text-align: right;
+  }
+
+  img {
+    width: 100%;
+    @media (min-width: rem(500)) {
+      width: 60%;
+    }
+  }
+
+  p {
+    margin: rem(5);
+  }
+}
+
+.bmc {
+  margin-top: rem(20);
+  display: block;
 }
