@@ -1,33 +1,40 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
+import feather from 'feather-icons'
 import { Helmet } from 'react-helmet'
-import Hero from '../components/hero'
+import Img from "gatsby-image"
 import Layout from '../components/layout'
-import ArticlePreview from '../components/article-preview'
+
+import styles from "./index.module.scss";
 
 class RootIndex extends React.Component {
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
-    const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-    const [author] = get(this, 'props.data.allContentfulPerson.edges')
-
+    const ig = get(this, 'props.data.instagram.edges')
+    const home = get(this, 'props.data.home.edges[0].node')
     return (
       <Layout location={this.props.location}>
-        <div style={{ background: '#fff' }}>
+        <div className={styles.pageContent}>
           <Helmet title={siteTitle} />
-          <Hero data={author.node} />
-          <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
-            <ul className="article-list">
-              {posts.map(({ node }) => {
-                return (
-                  <li key={node.slug}>
-                    <ArticlePreview article={node} />
-                  </li>
-                )
-              })}
-            </ul>
+          <div className={styles.intro} dangerouslySetInnerHTML={{__html: home.content.childMarkdownRemark.html}} />
+          <div className={styles.insta}>
+            <div>
+              <div className={styles.instaIntro}>
+                <span dangerouslySetInnerHTML={{__html: feather.icons['chevrons-down'].toSvg({'height': 15})}} /> Some Instagrams!
+              </div>
+              <a className={styles.instaGrid} href="https://www.instagram.com/iamwoodbeard" target="_blank" rel="noreferrer" aria-label="Go to Woodbeard's Instagram page" >
+                {ig.map((obj, index) => {
+                  return (
+                    <Img
+                      fluid={[obj.node.localFile.childImageSharp.fluid]}
+                      alt="Instagram Image"
+                      className={styles.instaImg}
+                      key={obj.node.id} />
+                  )
+                })}
+              </a>
+            </div>
           </div>
         </div>
       </Layout>
@@ -39,19 +46,20 @@ export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
+    site: site {
+      id
+      siteMetadata {
+        title
+        description
+        author
+      }
+    }
+    home: allContentfulPage(filter:{slug:{eq:"home"}}) {
+  		edges {
+  			node {
+  				title
+          seoDescription
+          content {
             childMarkdownRemark {
               html
             }
@@ -59,26 +67,29 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulPerson(
-      filter: { contentful_id: { eq: "15jwOBqpxqSAOy2eOO4S0m" } }
-    ) {
+    instagram: allInstaNode(limit: 14, filter: {localFile: {id: {ne: null}}}, sort: {fields: timestamp, order: DESC}) {
       edges {
         node {
-          name
-          shortBio {
-            shortBio
-          }
-          title
-          heroImage: image {
-            fluid(
-              maxWidth: 1180
-              maxHeight: 480
-              resizingBehavior: PAD
-              background: "rgb:000000"
-            ) {
-              ...GatsbyContentfulFluid_tracedSVG
+          id
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600, maxHeight: 600, quality: 90) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
             }
           }
+          permalink
+          carouselImages {
+            preview
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 600, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+          caption
         }
       }
     }

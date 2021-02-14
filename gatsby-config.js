@@ -46,9 +46,47 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sass",
     "gatsby-plugin-sharp",
+    `@contentful/gatsby-transformer-contentful-richtext`,
     {
       resolve: "gatsby-source-contentful",
       options: contentfulConfig,
     },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+        instagram_id: process.env.INSTAGRAM_BUSNESS_ID,
+        maxPosts: 20,
+        hashtags: {
+          enabled: true,
+          commentDepth: 5
+        }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/
+        }
+      }
+    },
+    {
+      resolve: "gatsby-plugin-google-tagmanager",
+      options: {
+        id: "GTM-PT2RSCG",
+        includeInDevelopment: true,
+      },
+    }
+    // {
+    //   resolve: `gatsby-plugin-google-gtag`,
+    //   options: {
+    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
+    //     trackingIds: [
+    //       "G-3C1X36FDL9"
+    //     ],
+    //   },
+    // }
+
   ],
 };
