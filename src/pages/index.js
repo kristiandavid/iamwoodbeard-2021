@@ -25,10 +25,9 @@ class RootIndex extends React.Component {
               </div>
               <a className={styles.instaGrid} href="https://www.instagram.com/iamwoodbeard" target="_blank" rel="noreferrer" aria-label="Go to Woodbeard's Instagram page" >
                 {ig.map((obj, index) => {
-                  const imgsrc = obj.node.localImage ? [obj.node.localImage.childImageSharp.fluid] : [obj.node.media_url];
                   return (
                     <Img
-                      fluid={imgsrc}
+                      fluid={[obj.node.localFile.childImageSharp.fluid]}
                       alt="Instagram Image"
                       className={styles.instaImg}
                       key={obj.node.id} />
@@ -68,11 +67,11 @@ export const pageQuery = graphql`
         }
       }
     }
-    instagram: allInstagramContent(limit: 14, filter: {localImage: {id: {ne: null}}}) {
+    instagram: allInstaNode(limit: 14, filter: {localFile: {id: {ne: null}}}, sort: {fields: timestamp, order: DESC}) {
       edges {
         node {
           id
-          localImage {
+          localFile {
             childImageSharp {
               fluid(maxWidth: 600, maxHeight: 600, quality: 90) {
                 ...GatsbyImageSharpFluid_withWebp
@@ -80,8 +79,17 @@ export const pageQuery = graphql`
             }
           }
           permalink
+          carouselImages {
+            preview
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 600, quality: 90) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
           caption
-          media_url
         }
       }
     }

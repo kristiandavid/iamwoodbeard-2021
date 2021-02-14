@@ -68,3 +68,5 @@ public
 .contentful.json
 # Local Netlify folder
 .netlify
+
+.DS_Store

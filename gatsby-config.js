@@ -52,9 +52,15 @@ module.exports = {
       options: contentfulConfig,
     },
     {
-      resolve: `gatsby-source-instagram-all`,
+      resolve: `gatsby-source-instagram`,
       options: {
-        access_token: process.env.INSTAGRAM_ACCESS_TOKEN
+        access_token: process.env.INSTAGRAM_ACCESS_TOKEN,
+        instagram_id: process.env.INSTAGRAM_BUSNESS_ID,
+        maxPosts: 20,
+        hashtags: {
+          enabled: true,
+          commentDepth: 5
+        }
       }
     },
     {
