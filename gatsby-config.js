@@ -36,7 +36,11 @@ if (!spaceId || !accessToken) {
 module.exports = {
   siteMetadata: {
     title: `Woodbeard`,
-    description: `Hello there. I am Woodbeard, an amateur woodworker from Canada.`,
+    titleTemplate: "%s | Woodbeard",
+    description: `Hello there. I'm Kristian, aka Woodbeard, a woodworker from Canada.`,
+    url: "https://www.iamwoodbeard.com", // No trailing slash allowed!
+    image: "/logo.jpg",
+    twitterUsername: "@iamwoodbeard",
     author: `@kristiandavid`,
   },
   pathPrefix: "/gatsby-contentful-starter",
