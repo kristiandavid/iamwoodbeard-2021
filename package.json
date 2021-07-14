@@ -31,32 +31,16 @@
   },
   "devDependencies": {
     "contentful-import": "^7.9.37",
-    "netlify-cli": "^2.71.0",
     "react-kawaii": "^0.17.0"
   },
-  "engines": {
-    "node": ">=10.13.0"
-  },
-  "homepage": "https://github.com/contentful/starter-gatsby-blog#readme",
-  "keywords": [
-    "gatsby",
-    "contentful",
-    "starter"
-  ],
   "license": "MIT",
   "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/contentful/starter-gatsby-blog.git"
-  },
   "scripts": {
     "dev": "gatsby develop",
     "build": "gatsby build",
     "heroku-postbuild": "gatsby build",
     "serve": "gatsby serve",
     "postinstall": "node ./bin/hello.js",
-    "setup": "node ./bin/setup.js",
-    "netlify:login": "netlify login",
-    "netlify:deploy": "netlify deploy -d public -p"
+    "setup": "node ./bin/setup.js"
   }
 }
