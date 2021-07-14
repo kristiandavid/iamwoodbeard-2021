@@ -58,8 +58,7 @@ module.exports = {
     {
       resolve: `gatsby-source-instagram`,
       options: {
-        username: `4015668965`,
-        maxPosts: 20
+        username: `4015668965`
       }
     },
     {
@@ -77,15 +76,5 @@ module.exports = {
         includeInDevelopment: true,
       },
     }
-    // {
-    //   resolve: `gatsby-plugin-google-gtag`,
-    //   options: {
-    //     // You can add multiple tracking ids and a pageview event will be fired for all of them.
-    //     trackingIds: [
-    //       "G-3C1X36FDL9"
-    //     ],
-    //   },
-    // }
-
-  ],
+  ]
 };
