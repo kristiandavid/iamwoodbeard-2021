@@ -4,7 +4,7 @@ import React from 'react'
 import hero from "../assets/img/hero.jpg"
 import heroLg from "../assets/img/hero_lg.jpg"
 
-import styles from './hero.module.scss'
+import * as styles from './hero.module.scss'
 
 export default ({ data }) => (
   <div className={styles.hero}>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, StaticQuery, graphql } from 'gatsby'
-import styles from './navigation.module.scss'
+import * as styles from './navigation.module.scss'
 
 export default function Nav() {
   return (
