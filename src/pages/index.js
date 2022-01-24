@@ -21,7 +21,7 @@ const IndexPage = (props) => {
         title={siteTitle}
         description={siteDesc}
         image={siteImg}
-        titleTemplate="About me, Woodbeard!"
+        titleTemplate="Hi! I'm Woodbeard! | Canadian Woodworker"
       />
       <div className={styles.pageContent}>
       <div className={styles.intro} dangerouslySetInnerHTML={{__html: homeContent.content.childMarkdownRemark.html}} />
