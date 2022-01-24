@@ -8,18 +8,25 @@
   }
 
   img {
-    width: 100%;
-    @media (min-width: rem(500)) {
-      width: 60%;
+    width:100%;
+    @media (min-width: rem(600)) {
+      width: 40vw;
+      float:left;
+      padding-right:20px;
+      padding-bottom:20px;
     }
   }
 
-  p {
-    margin: rem(5);
+  p,h1,h3 {
+    margin: rem(5) rem(5) rem(15);
+    padding-right:10px;
   }
 }
 
 .bmc {
   margin-top: rem(20);
   display: block;
+  img {
+    float: none;
+  }
 }

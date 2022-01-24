@@ -35,46 +35,58 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: `Woodbeard`,
-    titleTemplate: "%s | Woodbeard",
-    description: `Hello there. I'm Kristian, aka Woodbeard, a woodworker from Canada.`,
-    url: "https://www.iamwoodbeard.com", // No trailing slash allowed!
-    image: "/logo.jpg",
-    twitterUsername: "@iamwoodbeard",
-    author: `@kristiandavid`,
+      title: `Woodbeard`,
+      titleTemplate: "%s | Woodbeard",
+      description: `Hello there. I'm Kristian, aka Woodbeard, a woodworker from Canada.`,
+      siteUrl: `https://www.iamwoodbeard.com`,
+      image: "/logo.jpg",
+      twitterUsername: "@iamwoodbeard",
+      author: `@kristiandavid`
   },
-  pathPrefix: "/gatsby-contentful-starter",
-  plugins: [
-    "gatsby-transformer-remark",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sass",
-    "gatsby-plugin-sharp",
-    `@contentful/gatsby-transformer-contentful-richtext`,
-    {
-      resolve: "gatsby-source-contentful",
-      options: contentfulConfig,
+  plugins: [{
+    resolve: 'gatsby-source-contentful',
+    options: contentfulConfig
+  }, 
+  {
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "GTM-PT2RSCG",
+      includeInDevelopment: true,
     },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `4015668965`
-      }
-    },
-    {
-      resolve: "gatsby-plugin-react-svg",
-      options: {
-        rule: {
-          include: /assets/
-        }
-      }
-    },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-PT2RSCG",
-        includeInDevelopment: true,
-      },
+  },
+  {
+    resolve: `gatsby-source-instagram-all`,
+    options: {
+      access_token: process.env.INSTAGRAM_TOKEN,
     }
-  ]
+  },
+  "gatsby-plugin-image", 
+  "gatsby-plugin-react-helmet", 
+  "gatsby-plugin-sass",
+  "gatsby-plugin-sitemap", 
+  `@contentful/gatsby-transformer-contentful-richtext`,
+  {
+    resolve: 'gatsby-plugin-manifest',
+    options: {
+      "icon": "src/images/icon.png"
+    }
+  }, 
+  {
+    resolve: "gatsby-plugin-react-svg",
+    options: {
+      rule: {
+        include: /assets/
+      }
+    }
+  },
+  "gatsby-plugin-sharp", 
+  "gatsby-transformer-remark",
+  "gatsby-transformer-sharp", {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      "name": "images",
+      "path": "./src/images/"
+    },
+    __key: "images"
+  }]
 };

@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet'
 import Layout from '../components/layout'
 import {Ghost} from 'react-kawaii';
 
-import styles from './404.module.scss'
+import * as styles from './404.module.scss'
 
 function ErrorIndex() {
   const siteTitle = get(this, 'props.data.site.siteMetadata.title')
